@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: hyrd
+    runtime: node
+    plan: starter
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    disk: { name: hyrd-data, mountPath: /var/data, sizeGB: 1 }
+    envVars:
+      - { key: NODE_ENV, value: production }
+      - { key: JWT_SECRET, generateValue: true }
+      - { key: CREDENTIAL_KEY, generateValue: true }
+      - { key: DATABASE_PATH, value: /var/data/hyrd.db }
+      - { key: UPLOAD_DIR, value: /var/data/uploads }
+      - { key: AI_PROVIDER, value: none }
+      - { key: GEMINI_API_KEY, sync: false }
+      - { key: GREENHOUSE_BOARDS, value: "stripe,airbnb,databricks,cloudflare" }
+      - { key: LEVER_COMPANIES, value: "netflix,palantir" }
