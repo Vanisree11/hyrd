@@ -4,6 +4,10 @@
     {
       "source": "/api/:path*",
       "destination": "https://hyrd-yb4m.onrender.com/api/:path*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
